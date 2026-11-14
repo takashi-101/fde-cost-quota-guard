@@ -1,7 +1,5 @@
 # FDE Cost Quota Guard（円建ての累計額と上限の判定）
 
-[![tests](https://github.com/takashi-101/fde-cost-quota-guard/actions/workflows/tests.yml/badge.svg)](https://github.com/takashi-101/fde-cost-quota-guard/actions/workflows/tests.yml)
-
 呼び出し側が見積もった金額（円）を受け取り、JSONの台帳ファイルに記録した累計額に足しても上限を超えないかを判定するPythonのクラスです。超えない場合は加算後の累計額を台帳に書き込み、超える場合は書き込まずに `allowed=False` を返します。標準ライブラリだけで動きます。
 
 ## 30秒で読む要点
@@ -58,8 +56,6 @@ python -m unittest discover -s tests -v
 - 異常系：負の値、NaN（拒否した後も上限が効くこと）、数値でない値、壊れた台帳（上書きしないこと）、`spent_jpy` の無い台帳
 - READMEの「実行」に載せた出力が、`examples/run_example.py` の実際の出力と一致すること
 
-CI（GitHub Actionsによる自動テスト）は、push と pull request のたびに、Python 3.11 と 3.12 でテストとサンプルの実行を行う設定です（`.github/workflows/tests.yml`）。
-
 ## 制約
 - 月の切り替え（累計額のリセット）はしません。
 - 記録するのは見積額です。実際の請求額との突き合わせはしません。
@@ -75,14 +71,15 @@ examples/
   sample_requests.json       見本データ（架空）
   run_example.py             見本データの見積額を順に判定して表示
 tests/                       ユニットテスト
-.github/workflows/tests.yml  CI
 ```
 
 ## 根拠（学習）
 
-| 機能 | 裏付けになる学習（発行元・名称・発行日） | 照会先（Credly） |
-|---|---|---|
-| 見積額と台帳の合計を上限と比べる予算の判定 | Amazon Web Services Training and Certification「AWS Knowledge: Cloud Essentials - Training Badge」2025年5月7日 | https://www.credly.com/badges/e6ee93e4-e882-41d5-ae3e-9bda27c1bf10 |
+| 求められる力 | 機能 | 裏付けになる学習（発行元・名称・発行日） | 照会先（Credly） |
+|---|---|---|---|
+| クラウドと閉域の基盤 | 見積額と台帳の合計を上限と比べる予算の判定 | Amazon Web Services Training and Certification「AWS Knowledge: Cloud Essentials - Training Badge」2025年5月7日 | https://www.credly.com/badges/e6ee93e4-e882-41d5-ae3e-9bda27c1bf10 |
+
+「求められる力」の分け方は、[プロフィール](https://github.com/takashi-101) の「FDE・AXで求められる力と、その根拠」と同じです。
 
 ## ライセンス
 MIT（[LICENSE](LICENSE)）
