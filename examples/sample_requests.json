@@ -1,0 +1,10 @@
+{
+  "monthly_limit_jpy": 1000,
+  "requests": [
+    {"request_id": "REQ-001", "estimated_cost_jpy": 300},
+    {"request_id": "REQ-002", "estimated_cost_jpy": 450.5},
+    {"request_id": "REQ-003", "estimated_cost_jpy": 300},
+    {"request_id": "REQ-004", "estimated_cost_jpy": 249.5},
+    {"request_id": "REQ-005", "estimated_cost_jpy": 1}
+  ]
+}

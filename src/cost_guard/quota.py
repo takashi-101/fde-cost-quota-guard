@@ -1,8 +1,9 @@
-"""AI FinOps budget & token-quota guard preventing runaway LLM API spend."""
+"""Budget check: a caller-supplied JPY estimate plus the total in a JSON ledger vs. a limit."""
 
 from __future__ import annotations
 
 import json
+import math
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -16,7 +17,10 @@ class QuotaDecision:
 
 
 class TokenQuotaGuard:
-    """Enforces hard monthly JPY budget limits per department/project."""
+    """Keeps a cumulative JPY total in one JSON ledger file and denies estimates that exceed the limit.
+
+    It does not call any API and does not reset the total by month.
+    """
 
     def __init__(self, ledger_path: Path | str, monthly_limit_jpy: float) -> None:
         self.ledger_path = Path(ledger_path)
@@ -32,7 +36,7 @@ class TokenQuotaGuard:
         self.ledger_path.write_text(json.dumps({"spent_jpy": round(val, 4)}), encoding="utf-8")
 
     def check_and_consume(self, estimated_cost_jpy: float) -> QuotaDecision:
-        if estimated_cost_jpy < 0:
+        if math.isnan(estimated_cost_jpy) or estimated_cost_jpy < 0:
             raise ValueError("estimated_cost_jpy must be non-negative")
         current = self._read_spent()
         if current + estimated_cost_jpy > self.monthly_limit_jpy:
