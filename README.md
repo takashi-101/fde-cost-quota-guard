@@ -78,5 +78,11 @@ tests/                       ユニットテスト
 .github/workflows/tests.yml  CI
 ```
 
+## 根拠（学習）
+
+| 機能 | 裏付けになる学習（発行元・名称・発行日） | 照会先（Credly） |
+|---|---|---|
+| 見積額と台帳の合計を上限と比べる予算の判定 | Amazon Web Services Training and Certification「AWS Knowledge: Cloud Essentials - Training Badge」2025年5月7日 | https://www.credly.com/badges/e6ee93e4-e882-41d5-ae3e-9bda27c1bf10 |
+
 ## ライセンス
 MIT（[LICENSE](LICENSE)）
